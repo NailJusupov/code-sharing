@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UsersDAO {
 
     @Id
@@ -16,10 +16,10 @@ public class UsersDAO {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "gists", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<GistsDAO> gists = new HashSet<>();
 
-    @OneToMany(mappedBy = "stars", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<StarsDAO> stars = new HashSet<>();
 
     public UsersDAO() {

@@ -16,10 +16,10 @@ public class GistsDAO {
     @ManyToOne
     private UsersDAO user;
 
-    @OneToMany(mappedBy = "files", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "gist", fetch = FetchType.LAZY)
     private Set<FilesDAO> files = new HashSet<>();
 
-    @OneToMany(mappedBy = "stars", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "gist", fetch = FetchType.LAZY)
     private Set<FilesDAO> stars = new HashSet<>();
 
     private String title;
