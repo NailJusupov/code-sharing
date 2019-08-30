@@ -27,7 +27,7 @@ public class UserValidator implements Validator {
         UsersDAO user = (UsersDAO) object;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required");
-        if(usersRepository.findAllByEmail(user.getEmail()) != null) {
+        if(usersRepository.findByEmail(user.getEmail()) != null) {
             errors.rejectValue("email", null, "User with this email already exists");
         }
 
