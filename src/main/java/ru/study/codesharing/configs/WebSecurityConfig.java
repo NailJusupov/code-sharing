@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import ru.study.codesharing.security.NonRedirectingAuthenticationSuccessHandler;
 
 import javax.servlet.http.HttpServletResponse;
@@ -38,11 +39,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/api/auth/login")
                 .successHandler(nonRedirectingAuthenticationSuccessHandler)
-                .failureHandler((httpServletRequest, httpServletResponse, e) -> {httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);})
+                .failureHandler((httpServletRequest, httpServletResponse, e) -> {
+                    httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                })
                 .and()
                 .logout()
                 .logoutUrl("/api/auth/logout")
-                .logoutSuccessHandler(((request, response, authentication) -> response.setStatus(HttpServletResponse.SC_OK)))
+                .logoutSuccessHandler((request, response, authentication) -> response.setStatus(HttpServletResponse.SC_OK))
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(
