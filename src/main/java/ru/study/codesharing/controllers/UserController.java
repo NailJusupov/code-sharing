@@ -38,8 +38,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/userInfo")
-    public String getAuthUserInfo(Principal principal) {
-        return JSONObject.quote( principal.getName());
+    public UsersDAO getAuthUserInfo(Principal principal) {
+        String userEmail = principal.getName();
+        return userService.getAllInfoByEmail(userEmail);
     }
 
 

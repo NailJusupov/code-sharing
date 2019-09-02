@@ -28,4 +28,8 @@ public class UserServiceImpl implements UserService {
 
         return usersRepository.save(usersDAO);
     }
+
+    public UsersDAO getAllInfoByEmail(String email) {
+        return usersRepository.findByEmail(email);
+    }
 }
