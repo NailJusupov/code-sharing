@@ -6,6 +6,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.study.codesharing.models.domain.UsersDAO;
@@ -32,7 +33,7 @@ public class EmailAndPasswordAuthenticationProvider implements AuthenticationPro
         if(usersDAO != null && passwordEncoder.matches(password, usersDAO.getPassword())) {
             Object principal = new UserPrincipal(usersDAO.getEmail());
 
-            return new UsernamePasswordAuthenticationToken(principal, password);
+            return new UsernamePasswordAuthenticationToken(principal, password, AuthorityUtils.createAuthorityList("ROLE_USER"));
         } else {
             throw new BadCredentialsException("External system authentication failed");
         }
