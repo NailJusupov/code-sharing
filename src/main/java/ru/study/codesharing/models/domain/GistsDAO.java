@@ -1,6 +1,7 @@
 package ru.study.codesharing.models.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ public class GistsDAO {
     @GeneratedValue
     private long id;
 
-    @MapsId("userId")
+    @MapsId("user_id")
     @ManyToOne
     private UsersDAO user;
 
@@ -25,17 +26,17 @@ public class GistsDAO {
     private String title;
     private String description;
     private String programmingLanguage;
-    private String creationDate;
+    private Date creationDate;
 
-    GistsDAO() {
+    public GistsDAO() {
 
     }
 
-    GistsDAO(UsersDAO user,
+    public GistsDAO(UsersDAO user,
              String title,
              String description,
              String programmingLanguage,
-             String creationDate) {
+             Date creationDate) {
         this.user = user;
         this.title = title;
         this.description = description;
@@ -67,11 +68,11 @@ public class GistsDAO {
         this.programmingLanguage = programmingLanguage;
     }
 
-    public String getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -81,5 +82,29 @@ public class GistsDAO {
 
     public void setUser(UsersDAO user) {
         this.user = user;
+    }
+
+    public Set<FilesDAO> getFiles() {
+        return files;
+    }
+
+    public void setFiles(Set<FilesDAO> files) {
+        this.files = files;
+    }
+
+    public Set<FilesDAO> getStars() {
+        return stars;
+    }
+
+    public void setStars(Set<FilesDAO> stars) {
+        this.stars = stars;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

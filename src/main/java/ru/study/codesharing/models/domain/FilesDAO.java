@@ -17,11 +17,11 @@ public class FilesDAO {
     private String fileName;
     private String code;
 
-    FilesDAO() {
+    public FilesDAO() {
 
     }
 
-    FilesDAO(GistsDAO gist, String fileName, String code) {
+    public FilesDAO(GistsDAO gist, String fileName, String code) {
         this.gist = gist;
         this.fileName = fileName;
         this.code = code;
