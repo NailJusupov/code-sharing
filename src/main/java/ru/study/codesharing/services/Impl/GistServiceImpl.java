@@ -79,10 +79,16 @@ public class GistServiceImpl implements GistService {
     @Override
     public List<GistsWithStarsDTO> getAndSortAllGists(String sortBy, int pageNumber) {
 
-        Pageable gistsPage = PageRequest.of(pageNumber, PAGE_SIZE, Sort.by(sortBy));
+        Pageable gistsPage;
         Page<GistsDAO> gistsDAOPage;
 
-        gistsDAOPage = gistsRepository.findAll(gistsPage);
+        if(sortBy.equals("evaluation")) {
+            gistsPage = PageRequest.of(pageNumber, PAGE_SIZE);
+            gistsDAOPage = gistsRepository.findAllByStarsCount(gistsPage);
+        } else {
+            gistsPage = PageRequest.of(pageNumber, PAGE_SIZE, Sort.by(sortBy));
+            gistsDAOPage = gistsRepository.findAll(gistsPage);
+        }
 
         return gistMapper.toGistsWithStars(gistsDAOPage.getContent());
     }
