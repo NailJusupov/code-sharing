@@ -18,11 +18,11 @@ public class StarsDAO {
     @MapsId("gistId")
     private GistsDAO gist;
 
-    StarsDAO() {
+    public StarsDAO() {
 
     }
 
-    StarsDAO(UsersDAO user, GistsDAO gist) {
+    public StarsDAO(UsersDAO user, GistsDAO gist) {
         this.user = user;
         this.gist = gist;
     }

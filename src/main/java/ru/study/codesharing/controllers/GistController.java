@@ -28,4 +28,9 @@ public class GistController {
                                                @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber) {
         return gistService.getAndSortAllGists(sortBy, pageNumber);
     }
+
+    @GetMapping("/get-gists-count")
+    public long getGistsCount() {
+        return gistService.getGistsCount();
+    }
 }

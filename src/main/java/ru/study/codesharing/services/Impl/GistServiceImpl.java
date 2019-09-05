@@ -92,4 +92,9 @@ public class GistServiceImpl implements GistService {
 
         return gistMapper.toGistsWithStars(gistsDAOPage.getContent());
     }
+
+    @Override
+    public long getGistsCount() {
+        return gistsRepository.count();
+    }
 }

@@ -14,4 +14,8 @@ public interface GistService {
     boolean addFiles(List<FilesDTO> files, Long gistId);
 
     List<GistsWithStarsDTO> getAndSortAllGists(String sortBy, int pageNumber);
+
+    long getGistsCount();
+
+
 }

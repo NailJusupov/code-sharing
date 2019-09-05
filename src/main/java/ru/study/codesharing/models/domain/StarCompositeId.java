@@ -10,11 +10,11 @@ public class StarCompositeId implements Serializable {
     private long userId;
     private long gistId;
 
-    StarCompositeId() {
+    public StarCompositeId() {
 
     }
 
-    StarCompositeId(long userId, long gistId) {
+    public StarCompositeId(long userId, long gistId) {
         this.userId = userId;
         this.gistId = gistId;
     }

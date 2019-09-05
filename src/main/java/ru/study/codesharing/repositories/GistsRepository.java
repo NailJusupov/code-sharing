@@ -12,7 +12,7 @@ public interface GistsRepository extends CrudRepository<GistsDAO, Long> {
 
     Page<GistsDAO> findAll(Pageable pageable);
 
-    @Query(value = "Select gist from GistsDAO gist order by gist.stars.size desc")
+    @Query("Select gist from GistsDAO gist order by gist.stars.size desc")
     Page<GistsDAO> findAllByStarsCount(Pageable pageable);
 
 }
