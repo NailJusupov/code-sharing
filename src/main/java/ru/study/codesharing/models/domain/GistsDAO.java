@@ -32,11 +32,14 @@ public class GistsDAO {
 
     }
 
-    public GistsDAO(UsersDAO user,
-             String title,
-             String description,
-             String programmingLanguage,
-             Date creationDate) {
+    public GistsDAO(
+            long id,
+            UsersDAO user,
+            String title,
+            String description,
+            String programmingLanguage,
+            Date creationDate) {
+        this.id = id;
         this.user = user;
         this.title = title;
         this.description = description;

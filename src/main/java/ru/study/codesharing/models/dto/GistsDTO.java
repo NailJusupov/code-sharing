@@ -9,6 +9,9 @@ public class GistsDTO {
     private String programmingLanguage;
     private List<FilesDTO> files;
 
+    public GistsDTO() {
+    }
+
     public GistsDTO(String title,
                     String description,
                     String programmingLanguage,

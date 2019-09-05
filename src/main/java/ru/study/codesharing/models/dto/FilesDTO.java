@@ -5,6 +5,8 @@ public class FilesDTO {
     private String fileName;
     private String code;
 
+    public FilesDTO() {}
+
     public FilesDTO(String fileName, String code) {
         this.fileName = fileName;
         this.code = code;
