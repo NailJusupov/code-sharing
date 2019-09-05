@@ -10,8 +10,8 @@ public class FilesDAO {
     @GeneratedValue
     private long id;
 
-    @MapsId("gistId")
     @ManyToOne
+    @JoinColumn(name = "gist_id")
     private GistsDAO gist;
 
     private String fileName;

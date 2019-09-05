@@ -13,8 +13,8 @@ public class GistsDAO {
     @GeneratedValue
     private long id;
 
-    @MapsId("user_id")
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private UsersDAO user;
 
     @OneToMany(mappedBy = "gist", fetch = FetchType.LAZY)
