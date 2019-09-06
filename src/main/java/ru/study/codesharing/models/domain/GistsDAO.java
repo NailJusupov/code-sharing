@@ -21,7 +21,7 @@ public class GistsDAO {
     private Set<FilesDAO> files = new HashSet<>();
 
     @OneToMany(mappedBy = "gist", fetch = FetchType.LAZY)
-    private Set<FilesDAO> stars = new HashSet<>();
+    private Set<StarsDAO> stars = new HashSet<>();
 
     private String title;
     private String description;
@@ -95,11 +95,11 @@ public class GistsDAO {
         this.files = files;
     }
 
-    public Set<FilesDAO> getStars() {
+    public Set<StarsDAO> getStars() {
         return stars;
     }
 
-    public void setStars(Set<FilesDAO> stars) {
+    public void setStars(Set<StarsDAO> stars) {
         this.stars = stars;
     }
 

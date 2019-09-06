@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ru.study.codesharing.converters.GistMapper;
 import ru.study.codesharing.models.domain.FilesDAO;
 import ru.study.codesharing.models.domain.GistsDAO;
+import ru.study.codesharing.models.domain.StarsDAO;
 import ru.study.codesharing.models.domain.UsersDAO;
 import ru.study.codesharing.models.dto.FilesDTO;
 import ru.study.codesharing.models.dto.GistsDTO;
@@ -22,6 +23,7 @@ import ru.study.codesharing.services.GistService;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class GistServiceImpl implements GistService {
@@ -117,5 +119,19 @@ public class GistServiceImpl implements GistService {
         gist.setStarsCount(starsRepository.countAllByGistId(gist.getId()));
 
         return gist;
+    }
+
+    @Override
+    public boolean deleteGistById(long gistId) {
+
+        try {
+            filesRepository.deleteAllByGistId(gistId);
+            starsRepository.deleteAllByGistId(gistId);
+            gistsRepository.deleteById(gistId);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -38,4 +38,9 @@ public class GistController {
     public GistsWithStarsDTO getGistById(@RequestParam(name = "gistId", required = true) long gistId) {
         return gistService.getGistById(gistId);
     }
+
+    @DeleteMapping("/delete-gist-by-id")
+    public boolean deleteGistById(@RequestParam(name = "gistId", required = true) long gistId) {
+        return gistService.deleteGistById(gistId);
+    }
 }

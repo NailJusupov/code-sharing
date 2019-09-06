@@ -19,5 +19,7 @@ public interface GistService {
 
     GistsWithStarsDTO getGistById(long gistId);
 
+    boolean deleteGistById(long gistId);
+
 
 }
