@@ -2,6 +2,7 @@ package ru.study.codesharing.services.Impl;
 
 import org.springframework.stereotype.Service;
 import ru.study.codesharing.models.domain.GistsDAO;
+import ru.study.codesharing.models.domain.StarCompositeId;
 import ru.study.codesharing.models.domain.StarsDAO;
 import ru.study.codesharing.models.domain.UsersDAO;
 import ru.study.codesharing.repositories.GistsRepository;
@@ -39,6 +40,7 @@ public class StarsServiceImpl implements StarsService {
 
         StarsDAO starsDAO = new StarsDAO();
 
+        starsDAO.setId(new StarCompositeId(user.getId(), gist.getId()));
         starsDAO.setGist(gist);
         starsDAO.setUser(user);
 

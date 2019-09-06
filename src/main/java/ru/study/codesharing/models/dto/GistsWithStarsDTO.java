@@ -10,8 +10,8 @@ public class GistsWithStarsDTO {
     private String description;
     private String programmingLanguage;
     private Date creationDate;
+    private int starsCount;
     private Set<FilesDTO> files = new HashSet<>();
-    private Set<StarsDTO> stars = new HashSet<>();
 
     public GistsWithStarsDTO() {}
 
@@ -21,14 +21,14 @@ public class GistsWithStarsDTO {
                              String programmingLanguage,
                              Date creationDate,
                              Set<FilesDTO> files,
-                             Set<StarsDTO> stars) {
+                             int starsCount) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.programmingLanguage = programmingLanguage;
         this.creationDate = creationDate;
         this.files = files;
-        this.stars = stars;
+        this.starsCount = starsCount;
     }
 
     public String getTitle() {
@@ -79,11 +79,11 @@ public class GistsWithStarsDTO {
         this.creationDate = creationDate;
     }
 
-    public Set<StarsDTO> getStars() {
-        return stars;
+    public int getStarsCount() {
+        return starsCount;
     }
 
-    public void setStars(Set<StarsDTO> starsDTOS) {
-        this.stars = starsDTOS;
+    public void setStarsCount(int starsCount) {
+        this.starsCount = starsCount;
     }
 }

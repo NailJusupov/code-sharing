@@ -15,6 +15,7 @@ import ru.study.codesharing.models.dto.GistsDTO;
 import ru.study.codesharing.models.dto.GistsWithStarsDTO;
 import ru.study.codesharing.repositories.FilesRepository;
 import ru.study.codesharing.repositories.GistsRepository;
+import ru.study.codesharing.repositories.StarsRepository;
 import ru.study.codesharing.repositories.UsersRepository;
 import ru.study.codesharing.services.GistService;
 
@@ -28,6 +29,7 @@ public class GistServiceImpl implements GistService {
     private GistsRepository gistsRepository;
     private UsersRepository usersRepository;
     private FilesRepository filesRepository;
+    private StarsRepository starsRepository;
 
     private GistMapper gistMapper = Mappers.getMapper(GistMapper.class);
 
@@ -35,10 +37,12 @@ public class GistServiceImpl implements GistService {
 
     public GistServiceImpl(GistsRepository gistsRepository,
                            UsersRepository usersRepository,
-                           FilesRepository filesRepository) {
+                           FilesRepository filesRepository,
+                           StarsRepository starsRepository) {
         this.gistsRepository = gistsRepository;
         this.usersRepository = usersRepository;
         this.filesRepository = filesRepository;
+        this.starsRepository = starsRepository;
     }
 
     @Override
@@ -90,7 +94,14 @@ public class GistServiceImpl implements GistService {
             gistsDAOPage = gistsRepository.findAll(gistsPage);
         }
 
-        return gistMapper.toGistsWithStars(gistsDAOPage.getContent());
+        List<GistsWithStarsDTO> gists = gistMapper.toGistsWithStars(gistsDAOPage.getContent());
+
+        for (GistsWithStarsDTO gist:
+             gists) {
+            gist.setStarsCount(starsRepository.countAllByGistId(gist.getId()));
+        }
+
+        return gists;
     }
 
     @Override

@@ -56,4 +56,12 @@ public class StarsDAO {
     public void setGist(GistsDAO gist) {
         this.gist = gist;
     }
+
+    public StarCompositeId getId() {
+        return id;
+    }
+
+    public void setId(StarCompositeId id) {
+        this.id = id;
+    }
 }
