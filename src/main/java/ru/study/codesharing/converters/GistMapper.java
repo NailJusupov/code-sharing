@@ -11,7 +11,9 @@ import java.util.List;
 public interface GistMapper {
     GistsDAO toDAO(GistsDTO gistsDTO);
 
-    List<GistsWithStarsDTO> toGistsWithStars(List<GistsDAO> gistsDAOList);
+    List<GistsWithStarsDTO> toGistsListDTO(List<GistsDAO> gistsDAOList);
+
+    GistsWithStarsDTO toGistWithStars(GistsDAO gistDAO);
 
     List<GistsDTO> toDTOs(List<GistsDAO> gistsDAOList);
 }

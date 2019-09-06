@@ -17,5 +17,7 @@ public interface GistService {
 
     long getGistsCount();
 
+    GistsWithStarsDTO getGistById(long gistId);
+
 
 }

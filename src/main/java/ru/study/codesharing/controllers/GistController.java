@@ -33,4 +33,9 @@ public class GistController {
     public long getGistsCount() {
         return gistService.getGistsCount();
     }
+
+    @GetMapping("/get-gist-by-id")
+    public GistsWithStarsDTO getGistById(@RequestParam(name = "gistId", required = true) long gistId) {
+        return gistService.getGistById(gistId);
+    }
 }

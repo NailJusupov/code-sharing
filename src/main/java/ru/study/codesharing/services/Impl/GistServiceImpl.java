@@ -94,7 +94,7 @@ public class GistServiceImpl implements GistService {
             gistsDAOPage = gistsRepository.findAll(gistsPage);
         }
 
-        List<GistsWithStarsDTO> gists = gistMapper.toGistsWithStars(gistsDAOPage.getContent());
+        List<GistsWithStarsDTO> gists = gistMapper.toGistsListDTO(gistsDAOPage.getContent());
 
         for (GistsWithStarsDTO gist:
              gists) {
@@ -107,5 +107,15 @@ public class GistServiceImpl implements GistService {
     @Override
     public long getGistsCount() {
         return gistsRepository.count();
+    }
+
+    @Override
+    public GistsWithStarsDTO getGistById(long gistId) {
+
+        GistsWithStarsDTO gist = gistMapper.toGistWithStars(gistsRepository.getById(gistId));
+
+        gist.setStarsCount(starsRepository.countAllByGistId(gist.getId()));
+
+        return gist;
     }
 }
