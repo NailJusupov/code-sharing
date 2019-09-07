@@ -10,6 +10,4 @@ public interface StarsRepository extends CrudRepository<StarsDAO, Long> {
     StarsDAO findByUserAndAndGist(UsersDAO usersDAO, GistsDAO gistsDAO);
 
     int countAllByGistId(long gistId);
-
-    Long deleteAllByGistId(long gistId);
 }

@@ -17,10 +17,10 @@ public class GistsDAO {
     @JoinColumn(name = "user_id")
     private UsersDAO user;
 
-    @OneToMany(mappedBy = "gist", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "gist", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<FilesDAO> files = new HashSet<>();
 
-    @OneToMany(mappedBy = "gist", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "gist", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<StarsDAO> stars = new HashSet<>();
 
     private String title;

@@ -125,8 +125,6 @@ public class GistServiceImpl implements GistService {
     public boolean deleteGistById(long gistId) {
 
         try {
-            filesRepository.deleteAllByGistId(gistId);
-            starsRepository.deleteAllByGistId(gistId);
             gistsRepository.deleteById(gistId);
         } catch (Exception e) {
             return false;
