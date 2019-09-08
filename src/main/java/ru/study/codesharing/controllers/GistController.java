@@ -23,6 +23,11 @@ public class GistController {
         return gistService.createGist(gistsDTO, principal);
     }
 
+    @PutMapping("/update-gist")
+    public boolean updateGist(@RequestBody GistsDTO gistsDTO) {
+        return gistService.updateGist(gistsDTO);
+    }
+
     @GetMapping("/get-all-gists")
     public List<GistsWithStarsDTO> getAllGists(@RequestParam(name = "sortBy", defaultValue = "creationDate") String sortBy,
                                                @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber) {

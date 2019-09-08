@@ -23,4 +23,6 @@ public interface GistService {
 
     List<GistsDTO> getGistByTitle(String gistTitle);
 
+    boolean updateGist(GistsDTO gistsDTO);
+
 }

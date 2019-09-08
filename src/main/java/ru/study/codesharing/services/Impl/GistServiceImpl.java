@@ -61,9 +61,20 @@ public class GistServiceImpl implements GistService {
 
         gistsRepository.save(gist);
 
-        this.addFiles(gistsDTO.getFiles(), gist.getId());
+        return this.addFiles(gistsDTO.getFiles(), gist.getId());
+    }
 
-        return true;
+    @Override
+    public boolean updateGist(GistsDTO gistsDTO) {
+        GistsDAO gist = gistsRepository.getById(gistsDTO.getId());
+
+        gist.setDescription(gistsDTO.getDescription());
+        gist.setProgrammingLanguage(gistsDTO.getProgrammingLanguage());
+        gist.setTitle(gistsDTO.getTitle());
+
+        filesRepository.removeAllByGist_Id(gistsDTO.getId());
+
+        return this.addFiles(gistsDTO.getFiles(), gistsDTO.getId());
     }
 
     @Override
