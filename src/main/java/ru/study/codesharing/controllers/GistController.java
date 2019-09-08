@@ -43,4 +43,9 @@ public class GistController {
     public boolean deleteGistById(@RequestParam(name = "gistId", required = true) long gistId) {
         return gistService.deleteGistById(gistId);
     }
+
+    @GetMapping("/get-gist-by-title")
+    public List<GistsDTO> getGistByTitle(@RequestParam(name = "gistTitle", required = true) String gistTitle) {
+        return gistService.getGistByTitle(gistTitle);
+    }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class GistsDTO {
 
+    private long id;
     private String title;
     private String description;
     private String programmingLanguage;
@@ -12,10 +13,12 @@ public class GistsDTO {
     public GistsDTO() {
     }
 
-    public GistsDTO(String title,
+    public GistsDTO(long id,
+                    String title,
                     String description,
                     String programmingLanguage,
                     List<FilesDTO> filesDTOS) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.programmingLanguage = programmingLanguage;
@@ -52,5 +55,13 @@ public class GistsDTO {
 
     public void setFiles(List<FilesDTO> files) {
         this.files = files;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

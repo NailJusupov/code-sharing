@@ -21,5 +21,6 @@ public interface GistService {
 
     boolean deleteGistById(long gistId);
 
+    List<GistsDTO> getGistByTitle(String gistTitle);
 
 }

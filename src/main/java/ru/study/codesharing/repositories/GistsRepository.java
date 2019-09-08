@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import ru.study.codesharing.models.domain.GistsDAO;
 
+import java.util.List;
+
 public interface GistsRepository extends CrudRepository<GistsDAO, Long> {
 
     GistsDAO getById(Long id);
@@ -14,5 +16,7 @@ public interface GistsRepository extends CrudRepository<GistsDAO, Long> {
 
     @Query("Select gist from GistsDAO gist order by gist.stars.size desc")
     Page<GistsDAO> findAllByStarsCount(Pageable pageable);
+
+    List<GistsDAO> findAllByTitleContains(String gistTitle);
 
 }

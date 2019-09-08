@@ -132,4 +132,9 @@ public class GistServiceImpl implements GistService {
 
         return true;
     }
+
+    @Override
+    public List<GistsDTO> getGistByTitle(String gistTitle) {
+        return gistMapper.toDTOs(gistsRepository.findAllByTitleContains(gistTitle));
+    }
 }
