@@ -110,7 +110,7 @@ public class GistServiceImpl implements GistService {
         List<GistsWithStarsDTO> gists = gistMapper.toGistsListDTO(gistsDAOPage.getContent());
 
         for (GistsWithStarsDTO gist:
-             gists) {
+                gists) {
             gist.setStarsCount(starsRepository.countAllByGistId(gist.getId()));
         }
 
@@ -147,5 +147,21 @@ public class GistServiceImpl implements GistService {
     @Override
     public List<GistsDTO> getGistByTitle(String gistTitle) {
         return gistMapper.toDTOs(gistsRepository.findAllByTitleContains(gistTitle));
+    }
+
+    @Override
+    public boolean getGistOwnerInfo(long gistId, Principal principal) {
+
+        UsersDAO user;
+        GistsDAO gist;
+
+        try {
+            user = usersRepository.findByEmail(principal.getName());
+            gist = gistsRepository.getById(gistId);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return user.getId() == gist.getUser().getId();
     }
 }

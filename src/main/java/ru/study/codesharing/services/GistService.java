@@ -25,4 +25,6 @@ public interface GistService {
 
     boolean updateGist(GistsDTO gistsDTO);
 
+    boolean getGistOwnerInfo(long gistId, Principal principal);
+
 }

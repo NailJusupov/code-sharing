@@ -13,7 +13,8 @@ public class GistsWithStarsDTO {
     private int starsCount;
     private Set<FilesDTO> files = new HashSet<>();
 
-    public GistsWithStarsDTO() {}
+    public GistsWithStarsDTO() {
+    }
 
     public GistsWithStarsDTO(long id,
                              String title,

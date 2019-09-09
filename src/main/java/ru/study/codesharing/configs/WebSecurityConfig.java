@@ -34,14 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
-                .antMatchers("/api/auth/userInfo", "/api/stars/set-star-to-gist").authenticated()
+                .antMatchers("/api/auth/userInfo", "/api/stars/set-star-to-gist", "/api/gists/delete-gist-by-id").authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/api/auth/login")
                 .successHandler(nonRedirectingAuthenticationSuccessHandler)
-                .failureHandler((httpServletRequest, httpServletResponse, e) -> {
-                    httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                })
+                .failureHandler((httpServletRequest, httpServletResponse, e) -> httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
                 .logout()
                 .logoutUrl("/api/auth/logout")

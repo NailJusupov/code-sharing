@@ -31,7 +31,8 @@ public class GistController {
     @GetMapping("/get-all-gists")
     public List<GistsWithStarsDTO> getAllGists(@RequestParam(name = "sortBy", defaultValue = "creationDate") String sortBy,
                                                @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber) {
-        return gistService.getAndSortAllGists(sortBy, pageNumber);
+
+            return gistService.getAndSortAllGists(sortBy, pageNumber);
     }
 
     @GetMapping("/get-gists-count")
@@ -52,5 +53,14 @@ public class GistController {
     @GetMapping("/get-gist-by-title")
     public List<GistsDTO> getGistByTitle(@RequestParam(name = "gistTitle", required = true) String gistTitle) {
         return gistService.getGistByTitle(gistTitle);
+    }
+
+    @GetMapping("/get-gist-owner-info")
+    public boolean getGistOwnerInfo(@RequestParam(name = "gistId", required = true) long gistId, Principal principal) {
+        if (principal == null) {
+            return false;
+        } else {
+            return gistService.getGistOwnerInfo(gistId, principal);
+        }
     }
 }
