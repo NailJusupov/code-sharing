@@ -1,0 +1,6 @@
+<div class="pages">
+  <button class="page-button" *ngFor="let file of pagesArray; let index = index"
+          (click)="onPageButtonClick(index + 1)"
+          [ngClass]="{active: index + 1 === currentPage}"
+  >{{index + 1}}</button>
+</div>

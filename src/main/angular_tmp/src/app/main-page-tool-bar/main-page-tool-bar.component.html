@@ -1,0 +1,17 @@
+<section class="main-page-tool-bar">
+  <section class="sort-items">
+    <h4>Sort by:</h4>
+    <button class="sort-button date"
+            [ngClass]="{active: isDateSort}"
+            (click)="onDateClick()"
+    >Date</button>
+    <button class="sort-button evaluation"
+            [ngClass]="{active: isEvaluationSort}"
+            (click)="onEvaluationClick()"
+    >Evaluation</button>
+    <button class="sort-button language"
+            [ngClass]="{active: isLanguageSort}"
+            (click)="onLanguageClick()"
+    >Language</button>
+  </section>
+</section>

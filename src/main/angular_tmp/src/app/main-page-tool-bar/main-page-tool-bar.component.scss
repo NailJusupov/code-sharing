@@ -1,0 +1,21 @@
+.main-page-tool-bar{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+
+  .sort-items{
+    display: flex;
+
+    button, h4{
+      font-size: 16px;
+
+      &:hover{
+        color: #0074D9;
+      }
+
+      &.active{
+        color: #0074D9;
+      }
+    }
+  }
+}

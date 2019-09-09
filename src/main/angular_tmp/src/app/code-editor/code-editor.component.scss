@@ -1,0 +1,47 @@
+.code-editor{
+  height: 1200px;
+  margin-top: 30px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  z-index: 0;
+
+  &-settings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    padding: 0 20px;
+    background-color: rgba(0, 136, 0, 0.69);
+
+    &__inputs{
+      display: flex;
+      max-width: 600px;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__delete-button{
+      width: 100px;
+      height: 30px;
+      color: white;
+      border-radius: 3px;
+      background-color: red;
+      transition: background-color 300ms;
+
+      &:hover{
+        background-color: #c50000;
+        transition: background-color 300ms;
+      }
+    }
+  }
+
+  &__code{
+    width: calc(100% - 22px);
+    height: 1088px;
+    padding: 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    overflow: auto;
+    outline: none;
+  }
+}

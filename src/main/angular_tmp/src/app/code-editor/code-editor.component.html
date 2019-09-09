@@ -1,0 +1,19 @@
+<section class="code-editor">
+  <div class="code-editor-settings">
+      <app-styled-input [id]="fileNameInputId"
+                        inputTitle="File name"
+                        type="text"
+                        extraClass="file-settings-input"
+                        [inputValue]="fileName"
+                        (onInputValue)="getFileName($event)"
+      ></app-styled-input>
+    <button type="button" class="code-editor-settings__delete-button">Delete file</button>
+  </div>
+  <label>
+    <textarea class="code-editor__code"
+              #textAreaElement
+              [value]="code"
+              (input)="getCode(textAreaElement.value)"
+    ></textarea>
+  </label>
+</section>

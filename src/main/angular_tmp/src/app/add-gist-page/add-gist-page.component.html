@@ -1,0 +1,55 @@
+<section class="edit-gist-page">
+  <div class="edit-gist-page-content container">
+    <header class="edit-gist-page-content__header">
+      <app-styled-input inputTitle="Title"
+                        [id]="titleInputId"
+                        type="text"
+                        extraClass="gist-title-input"
+                        (onInputValue)="setTitle($event)"
+      ></app-styled-input>
+      <p class="message"
+         [ngClass]="{jsErrorMessage: isError}"
+      >Something gone wrong</p>
+      <p class="message"
+         [ngClass]="{jsSuccessMessage: isSucceed}"
+      >Success</p>
+      <div class="edit-gist-page-content__header__buttons">
+        <button class="save-gist-button" (click)="saveGist()">Save</button>
+        <button class="delete-gist-button">Delete</button>
+      </div>
+    </header>
+    <div class="edit-gist-page-content__description">
+      <label for="gistDescriptionTextarea">Description</label>
+      <textarea id="gistDescriptionTextarea" class="edit-gist-page-content__description__textarea"
+                #textAreaElement
+                (input)="setDescription(textAreaElement.value)"
+      ></textarea>
+    </div>
+    <app-styled-input inputTitle="Programming language"
+                      [id]="programmingLanguageInputId"
+                      type="text"
+                      extraClass="gist-title-input"
+                      (onInputValue)="setProgrammingLanguage($event)"
+    ></app-styled-input>
+    <div *ngFor="let file of gist.files; let index = index">
+      <app-code-editor *ngIf="index + 1 === currentPage"
+                       [fileName]="file.fileName"
+                       [code]="file.code"
+                       (onInputName)="setFileName($event)"
+                       (onInputLanguage)="setProgrammingLanguage($event)"
+                       (onInputCode)="setCode($event)"
+      ></app-code-editor>
+    </div>
+    <div class="pages-count">
+      <div class="pages" *ngFor="let file of gist.files; let index = index">
+        <button class="page-button"
+                (click)="changePage(index + 1)"
+                [ngClass]="{active: index + 1 === currentPage}"
+        >{{index + 1}}</button>
+      </div>
+      <button class="add-new-file"
+              (click)="addFile()"
+      >+ Add file</button>
+    </div>
+  </div>
+</section>

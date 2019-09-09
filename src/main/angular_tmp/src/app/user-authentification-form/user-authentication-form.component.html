@@ -1,0 +1,27 @@
+<div class="sign-in-window"
+     [ngClass]="{active: isOpen}"
+>
+  <div class="shadow-behind-form" (click)="closeWindow()"></div>
+  <form class="auth-form">
+    <h2>Sign in</h2>
+    <app-styled-input
+      [id]="emailInputId"
+      inputTitle="Email"
+      type="text"
+      extraClass="sign-in-up-forms"
+      (onInputValue)="setEmail($event)"
+    ></app-styled-input>
+    <app-styled-input
+      [id]="passwordInputId"
+      inputTitle="Password"
+      type="text"
+      extraClass="sign-in-up-forms"
+      (onInputValue)="setPassword($event)"
+    ></app-styled-input>
+    <div class="form-bottom">
+      <p class="error-message"
+         [ngClass]="{jsIncorrectData: !isDataCorrect}">Incorrect data</p>
+      <button type="button" class="sign-in-button" (click)="authenticate()">Sign In</button>
+    </div>
+  </form>
+</div>

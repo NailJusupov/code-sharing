@@ -1,0 +1,73 @@
+.gist-view{
+  display: flex;
+  justify-content: center;
+
+  &-content{
+    margin: 50px 0;
+
+    &-header{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+
+      .title-block{
+        display: flex;
+        align-items: center;
+
+        h2{
+          font-size: 36px;
+          font-weight: bold;
+          margin-right: 15px;
+        }
+      }
+
+      .buttons-block{
+        display: flex;
+
+        button{
+          width: 100px;
+          height: 30px;
+          color: white;
+          border-radius: 3px;
+        }
+
+        .edit-button{
+          background-color: #009c00;
+          transition: background-color 300ms;
+
+          &:hover{
+            background-color: #007800;
+            transition: background-color 300ms;
+          }
+        }
+
+        .delete-button{
+          background-color: red;
+          margin-left: 20px;
+          transition: background-color 300ms;
+
+          &:hover{
+            background-color: #c50000;
+            transition: background-color 300ms;
+          }
+        }
+      }
+    }
+
+    .gist-description{
+      margin: 30px 0;
+    }
+
+    .code-window{
+      margin-top: 10px;
+      margin-bottom: 30px;
+      border: 2px solid gray;
+      border-radius: 10px;
+      padding: 10px;
+      max-height: 1000px;
+      min-height: 300px;
+      overflow: auto;
+    }
+
+  }
+}

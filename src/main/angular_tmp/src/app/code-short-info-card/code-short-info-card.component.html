@@ -1,0 +1,15 @@
+<a routerLink="gist/{{gist.id}}">
+  <section class="code-short-info-card">
+    <header class="code-short-info-card__header">
+      <h2>{{gist.title}}</h2>
+      <app-stars-count [starsCount]="gist.starsCount"
+                       (setStar)="setStar()"
+      ></app-stars-count>
+    </header>
+    <p class="code-short-info-card__language">language: {{gist.programmingLanguage}}</p>
+    <pre class="code-short-info-card__code-block">
+      {{gist.files[0].code.slice(0, 200)}}
+  </pre>
+    <p class="code-short-info-card__description">{{gist.description}}</p>
+  </section>
+</a>

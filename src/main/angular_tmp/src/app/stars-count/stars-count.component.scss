@@ -1,0 +1,31 @@
+.star-block{
+  display: flex;
+  align-items: center;
+
+  .star-icon{
+    margin-right: 5px;
+    cursor: pointer;
+
+    svg{
+      path{
+        fill: #8f8f8f;
+      }
+    }
+
+    &:hover{
+      svg{
+        path{
+          fill: #2400FF
+        }
+      }
+    }
+
+    &.active{
+      svg{
+        path{
+          fill: #2400FF
+        }
+      }
+    }
+  }
+}

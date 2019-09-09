@@ -1,0 +1,29 @@
+.main-header{
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  background-color: rgba(0, 136, 0, 0.69);
+
+  h1{
+    font-size: 36px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .main-header__sign-in-up-buttons{
+
+      button{
+        border: none;
+        background: none;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+  }
+}

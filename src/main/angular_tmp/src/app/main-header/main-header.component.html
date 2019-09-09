@@ -1,0 +1,18 @@
+<header class="main-header">
+  <div class="main-header-content container">
+    <h1 routerLink="">Logo</h1>
+    <div *ngIf="!isUserLogged" class="main-header__sign-in-up-buttons">
+      <button (click)="changeSignInWindowState(true)">Sign in</button>
+      <button (click)="changeSignUpWindowState(true)">Sign up</button>
+    </div>
+    <app-user-menu *ngIf="isUserLogged" [userName]="userName"
+    (hideUserBar)="hideUserBar()"></app-user-menu>
+  </div>
+</header>
+
+<app-user-authentication-form
+  [isOpen]="isSignInWindowOpen"
+  (closeAuthWindow)="changeSignInWindowState(false)"
+  (changeUserBarState)="showUserBar($event)"
+></app-user-authentication-form>
+<app-user-registration-form [isOpen]="isSignUpWindowOpen" (closeRegisterWindow)="changeSignUpWindowState(false)"></app-user-registration-form>

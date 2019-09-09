@@ -1,0 +1,22 @@
+<div class="user-bar">
+  <div class="user-bar__user-info">
+    <img class="user-bar__user-info__photo" src="../assets/images/test-image.jpg" alt="user photo" width="40px" height="40px">
+    <h3>{{userName}}</h3>
+    <button type="button" class="user-bar__user-info__arrow-button"
+            [ngClass]="{active: isWindowActive}"
+    (click)="changeUserWindowState()">
+      <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="7.35355" y1="0.646447" x2="14.4246" y2="7.71751" stroke="black"/>
+        <line x1="7.62626" y1="1.13984" x2="0.55519" y2="8.21091" stroke="black"/>
+      </svg>
+    </button>
+  </div>
+  <div class="user-bar__user-menu"
+       [ngClass]="{active: isWindowActive}">
+    <a class="user-bar__user-menu__link menu-button">Your code</a>
+    <a class="user-bar__user-menu__link menu-button">Favourites</a>
+    <a class="user-bar__user-menu__link menu-button" routerLink="add-gist">Add new code</a>
+    <button type="button" class="user-bar__user-menu__sign-out-button menu-button"
+    (click)="logout()">Sign out</button>
+  </div>
+</div>

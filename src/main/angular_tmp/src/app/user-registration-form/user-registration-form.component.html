@@ -1,0 +1,40 @@
+<div class="registration-window"
+     [ngClass]="{active: isOpen}"
+>
+  <div class="shadow-behind-form" (click)="closeWindow()"></div>
+  <form class="registration-form">
+    <h2>Register</h2>
+    <app-styled-input
+      [id]="emailInputId"
+      inputTitle="Email"
+      type="email"
+      extraClass="sign-in-up-forms"
+      (onInputValue)="setEmail($event)"
+    ></app-styled-input>
+    <app-styled-input
+      [id]="nameInputId"
+      inputTitle="Name"
+      type="text"
+      extraClass="sign-in-up-forms"
+      (onInputValue)="setName($event)"
+    ></app-styled-input>
+    <app-styled-input
+      [id]="passwordInputId"
+      inputTitle="Password (minimum length is 6 characters)"
+      type="password"
+      extraClass="sign-in-up-forms"
+      (onInputValue)="setPassword($event)"
+    ></app-styled-input>
+    <app-styled-input
+      [id]="repeatPasswordInputId"
+      inputTitle="Repeat password"
+      type="password"
+      extraClass="sign-in-up-forms"
+      (onInputValue)="setPasswordRepeat($event)"
+    ></app-styled-input>
+
+    <div class="form-bottom">
+      <button type="button" class="register-button" (click)="register()">Register</button>
+    </div>
+  </form>
+</div>

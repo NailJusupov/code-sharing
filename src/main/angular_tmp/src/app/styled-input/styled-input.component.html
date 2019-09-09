@@ -1,0 +1,5 @@
+<div class="styled-input-block {{extraClass}}">
+  <label for="{{id}}" class="styled-input-label">{{inputTitle}}</label>
+  <input *ngIf="inputValue !== undefined" #inputElement id="{{id}}" type="{{type}}" [value]="inputValue" class="styled-input" (input)="onInput(inputElement.value)">
+  <input *ngIf="inputValue === undefined" #inputElement id="{{id}}" type="{{type}}" class="styled-input" (input)="onInput(inputElement.value)">
+</div>
