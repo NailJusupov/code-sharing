@@ -171,7 +171,7 @@ public class GistServiceImpl implements GistService {
 
     @Override
     public List<GistsDTO> getGistByTitle(String gistTitle) {
-        return gistMapper.toDTOs(gistsRepository.findAllByTitleContains(gistTitle));
+        return gistMapper.toDTOs(gistsRepository.findAllByTitleIgnoreCaseContains(gistTitle));
     }
 
     @Override

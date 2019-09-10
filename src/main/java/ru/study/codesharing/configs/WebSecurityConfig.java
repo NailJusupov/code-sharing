@@ -34,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
-                .antMatchers("/api/auth/userInfo", "/api/stars/set-star-to-gist", "/api/gists/delete-gist-by-id").authenticated()
+                .antMatchers("/api/auth/userInfo", "/api/stars/set-star-to-gist",
+                        "/api/gists/delete-gist-by-id", "/api/gists/update-gist").authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/api/auth/login")
@@ -50,7 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         (request, response, e) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
                 )
                 .and()
-                .csrf().disable();
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 
 }

@@ -22,7 +22,7 @@ export class SearchInputComponent implements OnInit {
     if(searchParam === '') {
       this.gists = new Array<ServerGist>()
     } else {
-      this.gistsApiService.getGistsByTitle(searchParam).subscribe(
+      this.gistsApiService.getGistsByTitle(searchParam.toLowerCase()).subscribe(
         response => this.gists = response,
         error => console.log(error)
       )

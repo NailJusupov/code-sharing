@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserApiService} from '../user-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-menu',
@@ -13,7 +14,8 @@ export class UserMenuComponent implements OnInit {
 
   isWindowActive = false;
 
-  constructor(private userApiService: UserApiService) { }
+  constructor(private userApiService: UserApiService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,7 +24,12 @@ export class UserMenuComponent implements OnInit {
     this.isWindowActive = !this.isWindowActive;
   }
 
+  closeUserWindow(): void {
+    this.isWindowActive = false;
+  }
+
   logout() {
+    this.router.navigate(['']);
     this.userApiService.logout().subscribe(
       response => this.hideUserBar.next(),
       error => console.log(error)

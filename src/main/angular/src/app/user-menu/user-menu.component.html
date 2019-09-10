@@ -12,7 +12,9 @@
     </button>
   </div>
   <div class="user-bar__user-menu"
-       [ngClass]="{active: isWindowActive}">
+       [ngClass]="{active: isWindowActive}"
+       (click)="closeUserWindow()"
+  >
     <a class="user-bar__user-menu__link menu-button" routerLink="/user/users-gists">Your code</a>
     <a class="user-bar__user-menu__link menu-button" routerLink="/user/favourites">Favourites</a>
     <a class="user-bar__user-menu__link menu-button" routerLink="/add-gist">Add new code</a>

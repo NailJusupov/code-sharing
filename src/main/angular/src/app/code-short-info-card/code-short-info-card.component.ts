@@ -17,6 +17,7 @@ export class CodeShortInfoCardComponent implements OnInit {
   }
 
   setStar() {
+
     this.gistApiService.setStar(this.gist.id).subscribe(
       response => this.gist.starsCount++,
       error => console.log(error)

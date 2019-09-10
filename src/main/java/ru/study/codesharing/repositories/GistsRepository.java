@@ -18,7 +18,7 @@ public interface GistsRepository extends CrudRepository<GistsDAO, Long> {
     @Query("Select gist from GistsDAO gist order by gist.stars.size desc")
     Page<GistsDAO> findAllByStarsCount(Pageable pageable);
 
-    List<GistsDAO> findAllByTitleContains(String gistTitle);
+    List<GistsDAO> findAllByTitleIgnoreCaseContains(String gistTitle);
 
     @Query(
             value = "SELECT DISTINCT gists.* FROM gists " +
