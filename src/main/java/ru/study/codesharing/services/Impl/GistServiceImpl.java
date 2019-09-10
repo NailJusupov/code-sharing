@@ -185,4 +185,18 @@ public class GistServiceImpl implements GistService {
             return gistsRepository.countAllByUser(user);
         }
     }
+
+    @Override
+    public boolean getIsUserOwnerInfo(long gistId, Principal principal) {
+
+        UsersDAO user = usersRepository.findByEmail(principal.getName());
+
+        try {
+            starsRepository.findByUserAndAndGist(user, gistsRepository.getById(gistId));
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -8,7 +8,7 @@
         ></app-stars-count>
       </div>
       <div class="buttons-block" *ngIf="isUserOwner">
-        <button class="edit-button">Edit</button>
+        <button class="edit-button" routerLink="/edit-gist/{{gist.id}}">Edit</button>
         <button class="delete-button" (click)="deleteGist()">Delete</button>
       </div>
     </header>

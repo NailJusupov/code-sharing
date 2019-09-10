@@ -8,6 +8,6 @@
     <button type="button" (click)="goToFirstGist()">search</button>
   </form>
   <div class="search-input__window" *ngIf="gists.length !== 0">
-    <a routerLink="gist/{{gist.id}}" *ngFor="let gist of gists">{{gist.title}}</a>
+    <a routerLink="/gist/{{gist.id}}" *ngFor="let gist of gists">{{gist.title}}</a>
   </div>
 </div>

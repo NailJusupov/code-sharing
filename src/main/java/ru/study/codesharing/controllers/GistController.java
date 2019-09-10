@@ -49,17 +49,17 @@ public class GistController {
     }
 
     @GetMapping("/get-gist-by-id")
-    public GistsWithStarsDTO getGistById(@RequestParam(name = "gistId", required = true) long gistId) {
+    public GistsWithStarsDTO getGistById(@RequestParam(name = "gistId") long gistId) {
         return gistService.getGistById(gistId);
     }
 
     @DeleteMapping("/delete-gist-by-id")
-    public boolean deleteGistById(@RequestParam(name = "gistId", required = true) long gistId) {
+    public boolean deleteGistById(@RequestParam(name = "gistId") long gistId) {
         return gistService.deleteGistById(gistId);
     }
 
     @GetMapping("/get-gist-by-title")
-    public List<GistsDTO> getGistByTitle(@RequestParam(name = "gistTitle", required = true) String gistTitle) {
+    public List<GistsDTO> getGistByTitle(@RequestParam(name = "gistTitle") String gistTitle) {
         return gistService.getGistByTitle(gistTitle);
     }
 
@@ -67,5 +67,15 @@ public class GistController {
     public long getGistsCountByParam(@RequestParam(name = "searchParam", defaultValue = "favourites") String searchParam,
                                      Principal principal) {
         return gistService.getGistsCountByParam(searchParam, principal);
+    }
+
+    @GetMapping("/get-is-user-owner-info")
+    public boolean getIsUserOwnerInfo(@RequestParam(name = "gistId") long gistId, Principal principal) {
+
+        if(principal == null) {
+            return false;
+        } else {
+            return gistService.getIsUserOwnerInfo(gistId, principal);
+        }
     }
 }

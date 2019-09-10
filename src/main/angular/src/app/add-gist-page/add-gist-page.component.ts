@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {File, Gist} from '../gist';
 import {GistsApiService} from '../gists-api.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-add-gist-page',
@@ -21,11 +22,25 @@ export class AddGistPageComponent implements OnInit {
   isError = false;
   isSucceed = false;
 
-  constructor(private gistsService: GistsApiService) {
+  isEditing: boolean;
+
+  constructor(private gistsService: GistsApiService,
+              private router: ActivatedRoute) {
     this.gist.files[0] = new File();
   }
 
   ngOnInit() {
+    this.isEditing = Boolean(this.router.snapshot.paramMap.get('id'));
+    this.getGist()
+  }
+
+  getGist() {
+    if(this.isEditing) {
+      this.gistsService.getGistById(+this.router.snapshot.paramMap.get('id')).subscribe(
+        response => this.gist = response.body,
+        error => console.log(error)
+      )
+    }
   }
 
   addFile() {
@@ -64,11 +79,17 @@ export class AddGistPageComponent implements OnInit {
   }
 
   saveGist() {
-    console.log(this.gist);
-    this.gistsService.createGist(this.gist).subscribe(
-      response => this.setSuccess(),
-      error => this.setError()
-    );
+    if(this.isEditing){
+      this.gistsService.updateGist(this.gist).subscribe(
+        response => this.setSuccess(),
+        error => this.setError()
+      );
+    } else {
+      this.gistsService.createGist(this.gist).subscribe(
+        response => this.setSuccess(),
+        error => this.setError()
+      );
+    }
   }
 
   changePage(pageNumber: number) {

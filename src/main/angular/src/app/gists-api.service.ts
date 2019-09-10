@@ -35,7 +35,7 @@ export class GistsApiService {
   }
 
   public getGistOwnerInfo(gistId: number): Observable<any> {
-    return this.httpClient.get(`/api/gists/get-gist-owner-info?gistId=${gistId}`);
+    return this.httpClient.get(`/api/gists/get-is-user-owner-info?gistId=${gistId}`);
   }
 
   public getGistsByTitle(gistTitle: String): Observable<any> {
@@ -48,6 +48,10 @@ export class GistsApiService {
 
   public getGistsCountByParam(searchParam: string): Observable<any> {
     return this.httpClient.get(`/api/gists/get-all-gists-count-by-search-param?searchParam=${searchParam}`);
+  }
+
+  public updateGist(gistFormData: Gist): Observable<any> {
+    return this.httpClient.put('/api/gists/update-gist', gistFormData, {observe: 'response'});
   }
 
 }

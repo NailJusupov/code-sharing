@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: '', component: MainPageComponent},
   {path: 'user/:param', component: UserGistsPageComponent},
   {path: 'add-gist', component: AddGistPageComponent},
+  {path: 'edit-gist/:id', component: AddGistPageComponent},
   {path: 'gist/:id', component: GistViewComponent}
 ];
 

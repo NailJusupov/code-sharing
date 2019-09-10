@@ -5,6 +5,7 @@
                         [id]="titleInputId"
                         type="text"
                         extraClass="gist-title-input"
+                        [inputValue]="gist.title"
                         (onInputValue)="setTitle($event)"
       ></app-styled-input>
       <p class="message"
@@ -22,6 +23,7 @@
       <label for="gistDescriptionTextarea">Description</label>
       <textarea id="gistDescriptionTextarea" class="edit-gist-page-content__description__textarea"
                 #textAreaElement
+                [value]="gist.description"
                 (input)="setDescription(textAreaElement.value)"
       ></textarea>
     </div>
@@ -29,6 +31,7 @@
                       [id]="programmingLanguageInputId"
                       type="text"
                       extraClass="gist-title-input"
+                      [inputValue]="gist.programmingLanguage"
                       (onInputValue)="setProgrammingLanguage($event)"
     ></app-styled-input>
     <div *ngFor="let file of gist.files; let index = index">

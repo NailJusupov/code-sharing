@@ -29,6 +29,6 @@ public interface GistService {
 
     long getGistsCountByParam(String searchParam, Principal principal);
 
-
+    boolean getIsUserOwnerInfo(long gistId, Principal principal);
 
 }
