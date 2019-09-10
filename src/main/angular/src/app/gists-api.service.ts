@@ -38,4 +38,16 @@ export class GistsApiService {
     return this.httpClient.get(`/api/gists/get-gist-owner-info?gistId=${gistId}`);
   }
 
+  public getGistsByTitle(gistTitle: String): Observable<any> {
+    return this.httpClient.get(`/api/gists/get-gist-by-title?gistTitle=${gistTitle}`);
+  }
+
+  public getPageableGistsListByParam(searchParam: string, pageNumber: number): Observable<any> {
+    return this.httpClient.get(`/api/gists/get-all-gists-by-search-param?pageNumber=${pageNumber}&searchParam=${searchParam}`);
+  }
+
+  public getGistsCountByParam(searchParam: string): Observable<any> {
+    return this.httpClient.get(`/api/gists/get-all-gists-count-by-search-param?searchParam=${searchParam}`);
+  }
+
 }

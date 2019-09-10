@@ -15,7 +15,9 @@ public interface GistService {
 
     List<GistsWithStarsDTO> getAndSortAllGists(String sortBy, int pageNumber);
 
-    long getGistsCount();
+    List<GistsWithStarsDTO> getAndSortAllGistsBySearchParam(int pageNumber, String searchParam, Principal principal);
+
+    long getAllGistsCount();
 
     GistsWithStarsDTO getGistById(long gistId);
 
@@ -25,6 +27,8 @@ public interface GistService {
 
     boolean updateGist(GistsDTO gistsDTO);
 
-    boolean getGistOwnerInfo(long gistId, Principal principal);
+    long getGistsCountByParam(String searchParam, Principal principal);
+
+
 
 }

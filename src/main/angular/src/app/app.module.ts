@@ -18,6 +18,8 @@ import { MainPageToolBarComponent } from './main-page-tool-bar/main-page-tool-ba
 import { GistViewComponent } from './gist-view/gist-view.component';
 import { StarsCountComponent } from './stars-count/stars-count.component';
 import { PagesSwitchButtonsComponent } from './pages-switch-buttons/pages-switch-buttons.component';
+import { SearchInputComponent } from './search-input/search-input.component';
+import { UserGistsPageComponent } from './user-gists-page/user-gists-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { PagesSwitchButtonsComponent } from './pages-switch-buttons/pages-switch
     GistViewComponent,
     StarsCountComponent,
     PagesSwitchButtonsComponent,
+    SearchInputComponent,
+    UserGistsPageComponent,
   ],
   imports: [
     BrowserModule,

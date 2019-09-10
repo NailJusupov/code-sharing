@@ -118,7 +118,32 @@ public class GistServiceImpl implements GistService {
     }
 
     @Override
-    public long getGistsCount() {
+    public List<GistsWithStarsDTO> getAndSortAllGistsBySearchParam(int pageNumber, String searchParam, Principal principal) {
+
+        Pageable gistsPage;
+        Page<GistsDAO> gistsDAOPage;
+        UsersDAO user = usersRepository.findByEmail(principal.getName());
+
+        gistsPage = PageRequest.of(pageNumber, PAGE_SIZE);
+
+        if(searchParam.equals("favourites")){
+            gistsDAOPage = gistsRepository.findAllByUserFavourites(user.getId(), gistsPage);
+        } else {
+            gistsDAOPage = gistsRepository.findAllByUser(user, gistsPage);
+        }
+
+        List<GistsWithStarsDTO> gists = gistMapper.toGistsListDTO(gistsDAOPage.getContent());
+
+        for (GistsWithStarsDTO gist:
+             gists) {
+            gist.setStarsCount(starsRepository.countAllByGistId(gist.getId()));
+        }
+
+        return gists;
+    }
+
+    @Override
+    public long getAllGistsCount() {
         return gistsRepository.count();
     }
 
@@ -150,18 +175,14 @@ public class GistServiceImpl implements GistService {
     }
 
     @Override
-    public boolean getGistOwnerInfo(long gistId, Principal principal) {
+    public long getGistsCountByParam(String searchParam, Principal principal) {
 
-        UsersDAO user;
-        GistsDAO gist;
+        UsersDAO user = usersRepository.findByEmail(principal.getName());
 
-        try {
-            user = usersRepository.findByEmail(principal.getName());
-            gist = gistsRepository.getById(gistId);
-        } catch (Exception e) {
-            return false;
+        if(searchParam.equals("favourites")) {
+            return gistsRepository.countAllByUserFavourites(user.getId());
+        } else {
+            return gistsRepository.countAllByUser(user);
         }
-
-        return user.getId() == gist.getUser().getId();
     }
 }

@@ -32,12 +32,20 @@ public class GistController {
     public List<GistsWithStarsDTO> getAllGists(@RequestParam(name = "sortBy", defaultValue = "creationDate") String sortBy,
                                                @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber) {
 
-            return gistService.getAndSortAllGists(sortBy, pageNumber);
+        return gistService.getAndSortAllGists(sortBy, pageNumber);
+    }
+
+    @GetMapping("/get-all-gists-by-search-param")
+    public List<GistsWithStarsDTO> getAllGistsByParam(@RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber,
+                                                      @RequestParam(name = "searchParam", defaultValue = "favourites") String searchParam,
+                                                      Principal principal) {
+
+        return gistService.getAndSortAllGistsBySearchParam(pageNumber, searchParam, principal);
     }
 
     @GetMapping("/get-gists-count")
     public long getGistsCount() {
-        return gistService.getGistsCount();
+        return gistService.getAllGistsCount();
     }
 
     @GetMapping("/get-gist-by-id")
@@ -55,12 +63,9 @@ public class GistController {
         return gistService.getGistByTitle(gistTitle);
     }
 
-    @GetMapping("/get-gist-owner-info")
-    public boolean getGistOwnerInfo(@RequestParam(name = "gistId", required = true) long gistId, Principal principal) {
-        if (principal == null) {
-            return false;
-        } else {
-            return gistService.getGistOwnerInfo(gistId, principal);
-        }
+    @GetMapping("/get-all-gists-count-by-search-param")
+    public long getGistsCountByParam(@RequestParam(name = "searchParam", defaultValue = "favourites") String searchParam,
+                                     Principal principal) {
+        return gistService.getGistsCountByParam(searchParam, principal);
     }
 }

@@ -1,0 +1,13 @@
+<div class="search-input">
+  <form class="search-input__form" (ngSubmit)="goToFirstGist()">
+    <label>
+      <input #inputElement placeholder="Заголовок"
+             (input)="setSearchParam(inputElement.value)"
+      >
+    </label>
+    <button type="button" (click)="goToFirstGist()">search</button>
+  </form>
+  <div class="search-input__window" *ngIf="gists.length !== 0">
+    <a routerLink="gist/{{gist.id}}" *ngFor="let gist of gists">{{gist.title}}</a>
+  </div>
+</div>

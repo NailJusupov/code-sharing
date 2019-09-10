@@ -1,0 +1,15 @@
+<main class="user-gists-page">
+  <div class="user-gists-page-content container">
+    <h2>{{searchParam === 'favourites' ? 'Favourites' : 'Your gists'}}</h2>
+    <section class="code-cards">
+      <app-code-short-info-card *ngFor="let gist of gists"
+                                [gist]="gist"
+      ></app-code-short-info-card>
+    </section>
+    <app-pages-switch-buttons
+      [currentPage]="currentPage"
+      [pagesArray]="pagesCount"
+      (changePage)="changePage($event)"
+    ></app-pages-switch-buttons>
+  </div>
+</main>

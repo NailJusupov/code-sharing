@@ -25,9 +25,7 @@ export class GistViewComponent implements OnInit {
   getGist() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.gistsApiService.getGistById(id).subscribe(
-      response => {
-        this.gist = response.body; console.log(response.body);
-      },
+      response => this.gist = response.body,
       error => console.log(error)
     );
 
