@@ -47,7 +47,9 @@ import { UserGistsPageComponent } from './user-gists-page/user-gists-page.compon
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: "BASE_API_URL", useValue: 'http://localhost:8080/api' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

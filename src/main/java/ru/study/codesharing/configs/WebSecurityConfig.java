@@ -1,5 +1,6 @@
 package ru.study.codesharing.configs;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import ru.study.codesharing.security.NonRedirectingAuthenticationSuccessHandler;
 
@@ -17,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private MyCorsFilter myCorsFilter;
 
     private NonRedirectingAuthenticationSuccessHandler nonRedirectingAuthenticationSuccessHandler;
 
@@ -51,8 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         (request, response, e) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
                 )
                 .and()
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                .addFilterBefore(myCorsFilter, ChannelProcessingFilter.class)
+                .csrf().disable();
     }
 
 }

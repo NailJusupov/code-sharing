@@ -1,0 +1,18 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+  spring:
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+  angular:
+    build: ./src/main/angular
+    ports:
+      - "90:80/tcp"
+    depends_on:
+      - spring

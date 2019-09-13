@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserRegisterFormData} from './user';
 
 @Injectable({
@@ -8,21 +8,23 @@ import {UserRegisterFormData} from './user';
 })
 export class UserApiService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              @Inject('BASE_API_URL') private baseUrl: string
+  ) { }
 
   public register(userFormData: UserRegisterFormData): Observable<any> {
-    return this.httpClient.post('/api/auth/registration', userFormData, {observe: 'response'});
+    return this.httpClient.post(`${this.baseUrl}/auth/registration`, userFormData, {observe: 'response'});
   }
 
   public authenticate(userFormData: FormData): Observable<any> {
-    return this.httpClient.post('/api/auth/login', userFormData, {observe: 'response'});
+    return this.httpClient.post(`${this.baseUrl}/auth/login`, userFormData, {observe: 'response', withCredentials: true});
   }
 
   public getAuthUserInfo(): Observable<any> {
-    return this.httpClient.get('/api/auth/userInfo', {observe: 'response'});
+    return this.httpClient.get(`${this.baseUrl}/auth/userInfo`, {observe: 'response', withCredentials: true});
   }
 
   public logout(): Observable<any> {
-    return this.httpClient.post('/api/auth/logout', {}, {observe: 'response'});
+    return this.httpClient.post(`${this.baseUrl}/auth/logout`, {}, {observe: 'response'});
   }
 }

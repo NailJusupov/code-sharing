@@ -2,6 +2,8 @@ package ru.study.codesharing.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.study.codesharing.models.domain.UsersDAO;
@@ -37,8 +39,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/userInfo")
-    public UsersDAO getAuthUserInfo(Principal principal) {
-        String userEmail = principal.getName();
+    public UsersDAO getAuthUserInfo() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = auth.getName();
         return userService.getAllInfoByEmail(userEmail);
     }
 
