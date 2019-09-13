@@ -61,7 +61,14 @@ public class GistServiceImpl implements GistService {
 
         gistsRepository.save(gist);
 
-        return this.addFiles(gistsDTO.getFiles(), gist.getId());
+        try {
+            this.addFiles(gistsDTO.getFiles(), gist.getId());
+        } catch (Exception e) {
+            gistsRepository.delete(gist);
+            return false;
+        }
+
+        return true;
     }
 
     @Override

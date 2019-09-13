@@ -2,7 +2,7 @@ spring:
   jackson:
     default-property-inclusion: non_null
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/code-sharing?user=postgres&password=postgres}
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://postgres:5432/code_sharing?user=postgres&password=postgres}
     initialization-mode: always
     continue-on-error: true
   jpa:

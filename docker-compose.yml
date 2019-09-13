@@ -13,6 +13,6 @@ services:
   angular:
     build: ./src/main/angular
     ports:
-      - "90:80/tcp"
+      - "4200:80/tcp"
     depends_on:
       - spring

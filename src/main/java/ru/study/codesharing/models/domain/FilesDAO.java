@@ -15,6 +15,7 @@ public class FilesDAO {
     private GistsDAO gist;
 
     private String fileName;
+    @Column(columnDefinition = "text")
     private String code;
 
     public FilesDAO() {

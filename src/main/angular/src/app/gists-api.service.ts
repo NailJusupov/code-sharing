@@ -14,7 +14,7 @@ export class GistsApiService {
   ) { }
 
   public createGist(gistFormData: Gist): Observable<any> {
-    return this.httpClient.post( `${this.baseUrl}/gists/add-gist`, gistFormData, {observe: 'response'});
+    return this.httpClient.post( `${this.baseUrl}/gists/add-gist`, gistFormData, {observe: 'response', withCredentials: true});
   }
 
   public getPageableGistsList(sortBy: string, pageNumber: number): Observable<any> {
@@ -26,7 +26,7 @@ export class GistsApiService {
   }
 
   public setStar(gistId: number): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/stars/set-star-to-gist`, gistId, {observe: 'response'});
+    return this.httpClient.post(`${this.baseUrl}/stars/set-star-to-gist`, gistId, {observe: 'response', withCredentials: true});
   }
 
   public getGistById(gistId: number): Observable<any> {
@@ -34,11 +34,11 @@ export class GistsApiService {
   }
 
   public deleteGistById(gistId: number): Observable<any> {
-    return this.httpClient.delete(`${this.baseUrl}/gists/delete-gist-by-id?gistId=${gistId}`);
+    return this.httpClient.delete(`${this.baseUrl}/gists/delete-gist-by-id?gistId=${gistId}`, {withCredentials: true});
   }
 
   public getGistOwnerInfo(gistId: number): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/gists/get-is-user-owner-info?gistId=${gistId}`);
+    return this.httpClient.get(`${this.baseUrl}/gists/get-is-user-owner-info?gistId=${gistId}`, {withCredentials: true});
   }
 
   public getGistsByTitle(gistTitle: String): Observable<any> {
@@ -46,15 +46,15 @@ export class GistsApiService {
   }
 
   public getPageableGistsListByParam(searchParam: string, pageNumber: number): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/gists/get-all-gists-by-search-param?pageNumber=${pageNumber}&searchParam=${searchParam}`);
+    return this.httpClient.get(`${this.baseUrl}/gists/get-all-gists-by-search-param?pageNumber=${pageNumber}&searchParam=${searchParam}`, {withCredentials: true});
   }
 
   public getGistsCountByParam(searchParam: string): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/gists/get-all-gists-count-by-search-param?searchParam=${searchParam}`);
+    return this.httpClient.get(`${this.baseUrl}/gists/get-all-gists-count-by-search-param?searchParam=${searchParam}`, {withCredentials: true});
   }
 
   public updateGist(gistFormData: Gist): Observable<any> {
-    return this.httpClient.put(`${this.baseUrl}/gists/update-gist`, gistFormData, {observe: 'response'});
+    return this.httpClient.put(`${this.baseUrl}/gists/update-gist`, gistFormData, {observe: 'response', withCredentials: true});
   }
 
 }

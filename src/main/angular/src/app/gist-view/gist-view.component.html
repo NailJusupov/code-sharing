@@ -14,8 +14,8 @@
     </header>
     <p>Language: {{gist.programmingLanguage}}</p>
     <p class="gist-description">{{gist.description}}</p>
-    <h3 class="file-name" *ngIf="gist.files">{{gist.files[0].fileName}}</h3>
-    <p class="code-window" *ngIf="gist.files">{{gist.files[0].code}}</p>
+    <h3 class="file-name" *ngIf="gist.files">{{gist.files[currentPage - 1].fileName}}</h3>
+    <p class="code-window" *ngIf="gist.files">{{gist.files[currentPage - 1].code}}</p>
     <app-pages-switch-buttons
       [currentPage]="currentPage"
       [pagesArray]="gist.files"
