@@ -24,6 +24,10 @@ export class UserRegistrationFormComponent implements OnInit {
 
   userFormData: UserRegisterFormData = new UserRegisterFormData();
 
+  repeatedPassword: string;
+
+  isDataCorrect = true;
+
   constructor(private userApiService: UserApiService) { }
 
   ngOnInit() {
@@ -47,14 +51,16 @@ export class UserRegistrationFormComponent implements OnInit {
   }
 
   setPasswordRepeat(password: string) {
-    this.userFormData.password = password;
+    this.repeatedPassword = password;
   }
 
   register() {
-    this.userApiService.register(this.userFormData).subscribe(
-      value => console.log(value),
-      error1 => console.log(error1)
-    );
+    if(this.userFormData.password === this.repeatedPassword) {
+      this.userApiService.register(this.userFormData).subscribe(
+        value => console.log(value),
+        error => this.isDataCorrect = false
+      );
+    }
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserApiService} from '../user-api.service';
 
 @Component({
   selector: 'app-main-header',
@@ -12,9 +13,15 @@ export class MainHeaderComponent implements OnInit {
   isUserLogged = false;
   userName: string;
 
-  constructor() { }
+  constructor(public userApiService: UserApiService) { }
 
   ngOnInit() {
+    this.userApiService.getAuthUserInfo().subscribe(
+      response => {
+        const user: any = response.body;
+        this.showUserBar(user.name)
+      }
+    )
   }
 
   changeSignInWindowState(isOpen: boolean): void {

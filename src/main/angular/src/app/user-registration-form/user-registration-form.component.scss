@@ -42,6 +42,21 @@
       display: flex;
       justify-content: center;
 
+      .error-message{
+        position: absolute;
+        text-align: center;
+        color: red;
+        display: none;
+
+        &.jsIncorrectData{
+          display: block;
+        }
+
+        &.jsServerErrorData{
+          display: block;
+        }
+      }
+
       .register-button{
         width: 150px;
         height: 30px;
