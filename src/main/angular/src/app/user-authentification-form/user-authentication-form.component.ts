@@ -47,7 +47,7 @@ export class UserAuthenticationFormComponent implements OnInit {
     this.userApiService.authenticate(formData).subscribe(
       response => {
         if (response.status === 401) {
-          this.isDataCorrect = false;
+            this.isDataCorrect = true
         } else {
           this.userApiService.getAuthUserInfo().subscribe(
             res => {

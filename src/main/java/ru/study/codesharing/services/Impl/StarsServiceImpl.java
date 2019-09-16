@@ -44,7 +44,11 @@ public class StarsServiceImpl implements StarsService {
         starsDAO.setGist(gist);
         starsDAO.setUser(user);
 
-        starsRepository.save(starsDAO);
+        try {
+            starsRepository.save(starsDAO);
+        } catch (Exception e) {
+            return false;
+        }
 
         return true;
 

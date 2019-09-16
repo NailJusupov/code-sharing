@@ -87,14 +87,18 @@ public class GistServiceImpl implements GistService {
     @Override
     public boolean addFiles(List<FilesDTO> files, Long gistId) {
 
-        for (FilesDTO file :
-                files) {
-            FilesDAO filesDAO = new FilesDAO();
-            filesDAO.setCode(file.getCode());
-            filesDAO.setFileName(file.getFileName());
-            filesDAO.setGist(gistsRepository.getById(gistId));
+        try {
+            for (FilesDTO file :
+                    files) {
+                FilesDAO filesDAO = new FilesDAO();
+                filesDAO.setCode(file.getCode());
+                filesDAO.setFileName(file.getFileName());
+                filesDAO.setGist(gistsRepository.getById(gistId));
 
-            filesRepository.save(filesDAO);
+                filesRepository.save(filesDAO);
+            }
+        } catch (Exception e) {
+            return false;
         }
 
         return true;

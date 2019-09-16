@@ -28,7 +28,8 @@ export class UserRegistrationFormComponent implements OnInit {
 
   isDataCorrect = true;
 
-  constructor(private userApiService: UserApiService) { }
+  constructor(private userApiService: UserApiService) {
+  }
 
   ngOnInit() {
 
@@ -55,9 +56,12 @@ export class UserRegistrationFormComponent implements OnInit {
   }
 
   register() {
-    if(this.userFormData.password === this.repeatedPassword) {
+    if (this.userFormData.password === this.repeatedPassword) {
       this.userApiService.register(this.userFormData).subscribe(
-        value => console.log(value),
+        value => {
+          console.log(value);
+          this.isDataCorrect = true
+        },
         error => this.isDataCorrect = false
       );
     }

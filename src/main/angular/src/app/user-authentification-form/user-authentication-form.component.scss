@@ -50,11 +50,7 @@
         color: red;
         display: none;
 
-        &.jsIncorrectData{
-          display: block;
-        }
-
-        &.jsServerErrorData{
+        &._incorrectData{
           display: block;
         }
       }
